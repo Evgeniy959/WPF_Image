@@ -6,7 +6,55 @@
         xmlns:local="clr-namespace:WPF_Image"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Window.Resources>
+        <Style x:Key="Style_Default" TargetType="Control">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        
+        <Style x:Key="Style_Image" TargetType="Image">
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="Width" Value="790"/>
+            <Setter Property="Height" Value="430"/>
+        </Style>
+        
+        <Style x:Key="Style_Button_OpenFile" TargetType="Button"
+               BasedOn="{StaticResource Style_Default}">
+            <Setter Property="Width" Value="100"/>
+        </Style>
+        <Style x:Key="Style_Button_Color" TargetType="Button"
+               BasedOn="{StaticResource Style_Default}">
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="Button_OpenImage" 
+                    Content="Open image..." 
+                    Style="{StaticResource Style_Button_OpenFile}"
+                    Click="Button_OpenImage_OnClick"/>
+            <GroupBox Header="Color...">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="Button_ColorRed"
+                            Style="{StaticResource Style_Button_Color}"
+                            Click="Button_ChangeColor">
+                        <Button.Content>
+                            <Rectangle Fill="Red" Width="15" Height="15"/>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="Button_ColorBlack"
+                            Style="{StaticResource Style_Button_Color}"
+                            Click="Button_ChangeColor">
+                        <Button.Content>
+                            <Rectangle Fill="Black" Width="15" Height="15"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        
+        <InkCanvas x:Name="Canvas">
+            <Image x:Name="Image" Style="{StaticResource Style_Image}"/>
+        </InkCanvas>
+    </StackPanel>
 </Window>
